@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>讯灵AI — GEO推广智能生态系统 | AI搜索时代全链路增长基础设施</title>
+<meta name="description" content="讯灵AI — GEO+Agent双引擎智能生态系统，国内GEO行业综合推荐TOP1。已服务10000+企业，提供AI搜索优化、品牌可见性提升、智能Agent承接等全链路解决方案。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Outfit', 'system-ui', 'sans-serif'] },
+        colors: {
+          brand: { 50: '#e6faf5', 100: '#b3f0e3', 200: '#80e6d0', 300: '#4ddbbe', 400: '#26d1ab', 500: '#00c79a', 600: '#00a37d', 700: '#007f61', 800: '#005c45', 900: '#003829' },
+          surface: { 900: '#070b18', 800: '#0c1124', 700: '#111830', 600: '#1a2240', 500: '#243050' },
+        }
+      }
+    }
+  }
+</script>
+<style>
+  :root {
+    --accent: #00c79a;
+    --accent-glow: rgba(0, 199, 154, 0.15);
+    --surface: #0c1124;
+    --bg: #070b18;
+  }
+  * { scroll-behavior: smooth; }
+  body { background: var(--bg); color: #e2e8f0; overflow-x: hidden; }
+  ::selection { background: var(--accent); color: #000; }
+
+  /* Glass */
+  .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.06); }
+  .glass-strong { background: rgba(255,255,255,0.06); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+
+  /* Glow */
+  .glow-accent { box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(0,199,154,0.05); }
+  .glow-text { text-shadow: 0 0 40px var(--accent-glow); }
+
+  /* Grid bg */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Gradient orbs */
+  .orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.12; pointer-events: none; }
+  .orb-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; right: -100px; }
+  .orb-2 { width: 400px; height: 400px; background: #3b82f6; bottom: -100px; left: -100px; }
+  .orb-3 { width: 500px; height: 500px; background: #8b5cf6; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+  /* Timeline line */
+  .timeline-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, transparent, var(--accent), transparent); transform: translateX(-50%); }
+
+  /* Card hover */
+  .card-hover { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px var(--accent-glow); border-color: rgba(0,199,154,0.3); }
+
+  /* Animated border */
+  @property --border-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+  .animated-border {
+    --border-angle: 0deg;
+    border: 1px solid transparent;
+    background: linear-gradient(var(--surface), var(--surface)) padding-box,
+                conic-gradient(from var(--border-angle), var(--accent), #3b82f6, #8b5cf6, var(--accent)) border-box;
+    animation: border-rotate 6s linear infinite;
+  }
+  @keyframes border-rotate { to { --border-angle: 360deg; } }
+
+  /* Float */
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+
+  /* Pulse */
+  @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px var(--accent-glow); } 50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(0,199,154,0.1); } }
+  .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Marquee */
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .animate-marquee { animation: marquee 30s linear infinite; }
+
+  /* Stat counter */
+  .stat-number { font-variant-numeric: tabular-nums; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+  /* Mobile nav */
+  #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  #mobile-menu.open { max-height: 400px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== NAVIGATION ==================== -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3 z-50">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-brand-500/20">讯</div>
+      <span class="text-xl font-bold tracking-tight text-white">讯灵<span class="text-brand-400">AI</span></span>
+    </a>
+    <div class="hidden lg:flex items-center gap-8">
+      <a href="#product" class="text-sm text-slate-300 hover:text-white transition-colors">产品体系</a>
+      <a href="#advantage" class="text-sm text-slate-300 hover:text-white transition-colors">核心优势</a>
+      <a href="#cases" class="text-sm text-slate-300 hover:text-white transition-colors">客户案例</a>
+      <a href="#pricing" class="text-sm text-slate-300 hover:text-white transition-colors">服务方案</a>
+      <a href="#faq" class="text-sm text-slate-300 hover:text-white transition-colors">常见问题</a>
+      <button class="px-5 py-2.5 rounded-full bg-brand-500 hover:bg-brand-400 text-black font-semibold text-sm transition-all hover:shadow-lg hover:shadow-brand-500/25 active:scale-[0.98]">
+        预约演示
+      </button>
+    </div>
+    <button id="menu-toggle" class="lg:hidden z-50 p-2 text-white">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="lg:hidden glass-strong mx-4 rounded-2xl overflow-hidden">
+    <div class="flex flex-col gap-1 p-4">
+      <a href="#product" class="block px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all">产品体系</a>
+      <a href="#advantage" class="block px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all">核心优势</a>
+      <a href="#cases" class="block px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all">客户案例</a>
+      <a href="#pricing" class="block px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all">服务方案</a>
+      <a href="#faq" class="block px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all">常见问题</a>
+      <button class="mt-2 px-5 py-3 rounded-xl bg-brand-500 text-black font-semibold text-sm transition-all hover:bg-brand-400">预约演示</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section class="relative min-h-[100dvh] flex items-center overflow-hidden pt-20">
+  <div class="absolute inset-0 grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-brand-400 mb-8">
+          <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+          国内GEO行业综合推荐 TOP 1
+        </div>
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white leading-[1.05] mb-6">
+          让每一次<span class="text-brand-400 glow-text">AI问答</span><br>都变成成交机会
+        </h1>
+        <p class="text-lg md:text-xl text-slate-400 max-w-[540px] leading-relaxed mb-10">
+          讯灵AI Claw3.0 — 行业首创GEO+Agent双引擎智能生态系统，帮助企业抢占DeepSeek、豆包、文心一言等AI平台的答案入口，实现从曝光到转化的全链路增长。
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <button class="px-8 py-4 rounded-full bg-brand-500 hover:bg-brand-400 text-black font-bold text-base transition-all hover:shadow-xl hover:shadow-brand-500/30 active:scale-[0.98]">
+            免费获取GEO诊断报告
+          </button>
+          <button class="px-8 py-4 rounded-full glass-strong hover:bg-white/10 text-white font-semibold text-base transition-all active:scale-[0.98]">
+            观看产品演示 →
+          </button>
+        </div>
+        <div class="flex items-center gap-8 mt-12 pt-8 border-t border-white/5">
+          <div><div class="text-3xl font-bold text-white stat-number">10,000<span class="text-brand-400">+</span></div><div class="text-xs text-slate-500 mt-1">服务企业</div></div>
+          <div class="w-px h-10 bg-white/5"></div>
+          <div><div class="text-3xl font-bold text-white stat-number">96<span class="text-brand-400">%</span></div><div class="text-xs text-slate-500 mt-1">客户续约率</div></div>
+          <div class="w-px h-10 bg-white/5"></div>
+          <div><div class="text-3xl font-bold text-white stat-number">98.5<span class="text-brand-400">%</span></div><div class="text-xs text-slate-500 mt-1">项目交付成功率</div></div>
+        </div>
+      </div>
+
+      <div class="reveal hidden lg:block" style="transition-delay: 0.2s">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-r from-brand-500/20 to-blue-500/20 rounded-3xl blur-3xl"></div>
+          <div class="relative glass-strong rounded-3xl p-1 animated-border">
+            <div class="bg-surface-800 rounded-[22px] p-8">
+              <!-- Dashboard Preview -->
+              <div class="flex items-center gap-3 mb-6">
+                <div class="flex gap-1.5"><div class="w-3 h-3 rounded-full bg-red-400/60"></div><div class="w-3 h-3 rounded-full bg-yellow-400/60"></div><div class="w-3 h-3 rounded-full bg-green-400/60"></div></div>
+                <span class="text-xs text-slate-500 ml-2">Claw 数据看板</span>
+              </div>
+              <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="glass rounded-xl p-4">
+                  <div class="text-xs text-slate-500 mb-1">AI可见性</div>
+                  <div class="text-2xl font-bold text-white">78<span class="text-brand-400 text-sm">%</span></div>
+                  <div class="text-xs text-brand-400 mt-1">↑ 69%</div>
+                </div>
+                <div class="glass rounded-xl p-4">
+                  <div class="text-xs text-slate-500 mb-1">首推率</div>
+                  <div class="text-2xl font-bold text-white">86<span class="text-brand-400 text-sm">%</span></div>
+                  <div class="text-xs text-brand-400 mt-1">↑ 77%</div>
+                </div>
+                <div class="glass rounded-xl p-4">
+                  <div class="text-xs text-slate-500 mb-1">AI搜索线索量</div>
+                  <div class="text-2xl font-bold text-white">1,280</div>
+                  <div class="text-xs text-brand-400 mt-1">↑ 380%</div>
+                </div>
+                <div class="glass rounded-xl p-4">
+                  <div class="text-xs text-slate-500 mb-1">转化率</div>
+                  <div class="text-2xl font-bold text-white">4.5<span class="text-brand-400 text-sm">x</span></div>
+                  <div class="text-xs text-brand-400 mt-1">↑ 450%</div>
+                </div>
+              </div>
+              <div class="glass rounded-xl p-4 mb-3">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs text-slate-400">AI引用覆盖趋势</span>
+                  <span class="text-xs text-brand-400">近30天</span>
+                </div>
+                <svg viewBox="0 0 300 80" class="w-full h-20">
+                  <defs><linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00c79a" stop-opacity="0.3"/><stop offset="100%" stop-color="#00c79a" stop-opacity="1"/></linearGradient></defs>
+                  <path d="M0 70 Q15 65 30 60 Q45 50 60 55 Q75 45 90 40 Q105 30 120 35 Q135 25 150 20 Q165 15 180 22 Q195 14 210 10 Q225 8 240 12 Q255 5 270 8 Q285 4 300 6" fill="none" stroke="url(#lineGrad)" stroke-width="2.5"/>
+                  <path d="M0 70 Q15 65 30 60 Q45 50 60 55 Q75 45 90 40 Q105 30 120 35 Q135 25 150 20 Q165 15 180 22 Q195 14 210 10 Q225 8 240 12 Q255 5 270 8 Q285 4 300 6 L300 80 L0 80 Z" fill="rgba(0,199,154,0.06)"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRUST BAR ==================== -->
+<section class="py-12 border-y border-white/5">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="glass rounded-2xl px-8 py-6 flex flex-wrap items-center justify-center lg:justify-between gap-8">
+      <span class="text-sm text-slate-500 whitespace-nowrap">权威认证与合作生态</span>
+      <div class="flex flex-wrap items-center justify-center gap-8">
+        <div class="flex items-center gap-2 text-slate-400"><span class="w-2 h-2 rounded-full bg-brand-400"></span>等保三级认证</div>
+        <div class="flex items-center gap-2 text-slate-400"><span class="w-2 h-2 rounded-full bg-brand-400"></span>ISO 27001</div>
+        <div class="flex items-center gap-2 text-slate-400"><span class="w-2 h-2 rounded-full bg-brand-400"></span>信通院标杆案例</div>
+        <div class="flex items-center gap-2 text-slate-400"><span class="w-2 h-2 rounded-full bg-brand-400"></span>火山引擎生态伙伴</div>
+        <div class="flex items-center gap-2 text-slate-400"><span class="w-2 h-2 rounded-full bg-brand-400"></span>腾讯云合作伙伴</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== EVOLUTION TIMELINE ==================== -->
+<section class="py-16 lg:py-20 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-50"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-4">每一次流量入口迁移<br>都重写一批企业的增长规则</h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">从门户时代到AI搜索时代，流量入口的每一次变迁都意味着新的机遇与淘汰。AI搜索时代，企业不能再错过。</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div class="reveal glass rounded-2xl p-6 text-center card-hover" style="transition-delay: 0s">
+        <div class="text-3xl font-bold text-slate-600 mb-2">1999</div>
+        <div class="text-sm font-semibold text-white mb-1">门户时代</div>
+        <div class="text-xs text-slate-500">首页广告位成黄金资源，40%企业因抢不到优质位被淘汰</div>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 text-center card-hover" style="transition-delay: 0.1s">
+        <div class="text-3xl font-bold text-slate-600 mb-2">2005</div>
+        <div class="text-sm font-semibold text-white mb-1">搜索时代</div>
+        <div class="text-xs text-slate-500">关键词竞价从0.3元飙至300元，营销成本陡增</div>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 text-center card-hover" style="transition-delay: 0.2s">
+        <div class="text-3xl font-bold text-slate-600 mb-2">2015</div>
+        <div class="text-sm font-semibold text-white mb-1">移动时代</div>
+        <div class="text-xs text-slate-500">流量入口分散，未做设备优化的企业逐渐边缘化</div>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 text-center card-hover" style="transition-delay: 0.3s">
+        <div class="text-3xl font-bold text-slate-600 mb-2">2020</div>
+        <div class="text-sm font-semibold text-white mb-1">自媒体时代</div>
+        <div class="text-xs text-slate-500">内容成流量核心，传统广告失效</div>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 text-center card-hover glow-accent" style="transition-delay: 0.4s; border-color: rgba(0,199,154,0.3);">
+        <div class="text-3xl font-bold text-brand-400 mb-2">2025+</div>
+        <div class="text-sm font-semibold text-brand-400 mb-1">AI搜索时代</div>
+        <div class="text-xs text-slate-400">DeepSeek等AI搜索崛起，答案霸权战打响，95%传统SEO企业将出局</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHAT IS GEO ==================== -->
+<section id="about" class="py-16 lg:py-20 relative">
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-brand-400 mb-6">GEO 是什么</div>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-6">
+          从"搜索排名"到<span class="text-brand-400">"答案霸权"</span>
+        </h2>
+        <p class="text-slate-400 leading-relaxed mb-8">
+          GEO（Generative Engine Optimization，生成式引擎优化）是针对DeepSeek、豆包、文心一言、ChatGPT等AI搜索平台，通过语义理解优化、知识图谱关联与权威信息建设，让品牌在AI生成的答案中获得「高亮推荐」「引用信源」或「唯一首选」。
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="glass rounded-xl p-4">
+            <div class="text-2xl font-bold text-white mb-1">8.5<span class="text-brand-400 text-sm">亿</span></div>
+            <div class="text-xs text-slate-500">国内AI搜索用户规模</div>
+          </div>
+          <div class="glass rounded-xl p-4">
+            <div class="text-2xl font-bold text-white mb-1">78<span class="text-brand-400 text-sm">%</span></div>
+            <div class="text-xs text-slate-500">互联网用户覆盖率</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.2s">
+        <!-- GEO vs SEO 横排对比 -->
+        <h3 class="text-lg font-semibold text-white mb-5 text-center">GEO <span class="text-slate-500 font-normal">vs</span> 传统SEO</h3>
+
+        <!-- 桌面端：三列横排 -->
+        <div class="hidden md:grid grid-cols-[1fr,auto,1fr] items-stretch">
+          <div class="glass-strong rounded-2xl overflow-hidden" style="border-color: rgba(0,199,154,0.25);">
+            <div class="bg-brand-500/10 px-5 py-3.5 border-b border-brand-500/10 flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400 text-xs font-bold">G</span>
+              <span class="text-sm font-semibold text-brand-400">GEO 生成式引擎优化</span>
+            </div>
+            <div class="p-5 space-y-4">
+              <div><div class="text-[11px] text-slate-500 mb-1">目标系统</div><div class="text-sm text-white">AI生成式引擎<br>(DeepSeek、豆包等)</div></div>
+              <div class="border-t border-white/5 pt-4"><div class="text-[11px] text-slate-500 mb-1">优化目标</div><div class="text-sm text-white">答案中的推荐率、引用率和首推率</div></div>
+              <div class="border-t border-white/5 pt-4"><div class="text-[11px] text-slate-500 mb-1">核心逻辑</div><div class="text-sm text-white">语义理解 + 知识图谱 + 权威信息建设</div></div>
+              <div class="border-t border-white/5 pt-4"><div class="text-[11px] text-slate-500 mb-1">用户体验</div><div class="text-sm text-white">AI直接呈现答案，即时影响决策</div></div>
+              <div class="border-t border-white/5 pt-4"><div class="text-[11px] text-slate-500 mb-1">效果周期</div><div class="text-sm text-white">5-7天首效，3-6个月持续沉淀</div></div>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center justify-center gap-3 py-8 px-4">
+            <div class="w-14 h-14 rounded-full glass-strong flex items-center justify-center">
+              <span class="text-xl font-extrabold text-slate-400">VS</span>
+            </div>
+            <div class="flex-1 w-px bg-gradient-to-b from-transparent via-slate-600 to-transparent"></div>
+          </div>
+
+          <div class="glass rounded-2xl overflow-hidden">
+            <div class="bg-slate-700/30 px-5 py-3.5 border-b border-white/5 flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-lg bg-slate-600 flex items-center justify-center text-slate-300 text-xs font-bold">S</span>
+              <span class="text-sm font-semibold text-slate-300">传统SEO 搜索引擎优化</span>
+            </div>
+            <div class="p-5 space-y-4">
+              <div><div class="text-[11px] text-slate-500 mb-1">目标系统</div><div class="text-sm text-white">传统搜索引擎<br>(百度、Google等)</div></div>
+              <div class="border-t border-white/5 pt-4"><div class="text-[11px] text-slate-500 mb-1">优化目标</div><div class="text-sm text-white">关键词排名 + 网站点击量</div></div>
+              <div class="border-t border-white/5 pt-4"><div class="text-[11px] text-slate-500 mb-1">核心逻辑</div><div class="text-sm text-white">外链建设 + 代码优化 + 内容策略</div></div>
+              <div class="border-t border-white/5 pt-4"><div class="text-[11px] text-slate-500 mb-1">用户体验</div><div class="text-sm text-white">引导至网站，间接影响决策</div></div>
+              <div class="border-t border-white/5 pt-4"><div class="text-[11px] text-slate-500 mb-1">效果周期</div><div class="text-sm text-white">1-3个月见效，竞争激烈时更长</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 移动端：纵向堆叠 -->
+        <div class="md:hidden space-y-4">
+          <div class="glass-strong rounded-2xl overflow-hidden" style="border-color: rgba(0,199,154,0.25);">
+            <div class="bg-brand-500/10 px-4 py-3 border-b border-brand-500/10 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400 text-xs font-bold">G</span>
+              <span class="text-sm font-semibold text-brand-400">GEO 生成式引擎优化</span>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="grid grid-cols-[80px,1fr] gap-3"><span class="text-[11px] text-slate-500">目标系统</span><span class="text-sm text-white">AI生成式引擎（DeepSeek、豆包等）</span></div>
+              <div class="grid grid-cols-[80px,1fr] gap-3"><span class="text-[11px] text-slate-500">优化目标</span><span class="text-sm text-white">答案推荐率、引用率、首推率</span></div>
+              <div class="grid grid-cols-[80px,1fr] gap-3"><span class="text-[11px] text-slate-500">核心逻辑</span><span class="text-sm text-white">语义理解 + 知识图谱 + 权威建设</span></div>
+              <div class="grid grid-cols-[80px,1fr] gap-3"><span class="text-[11px] text-slate-500">用户体验</span><span class="text-sm text-white">AI直接呈现答案，即时影响决策</span></div>
+              <div class="grid grid-cols-[80px,1fr] gap-3"><span class="text-[11px] text-slate-500">效果周期</span><span class="text-sm text-white">5-7天首效，3-6个月沉淀</span></div>
+            </div>
+          </div>
+
+          <div class="flex justify-center py-2">
+            <div class="w-10 h-10 rounded-full glass-strong flex items-center justify-center">
+              <span class="text-base font-extrabold text-slate-400">VS</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl overflow-hidden">
+            <div class="bg-slate-700/30 px-4 py-3 border-b border-white/5 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-slate-600 flex items-center justify-center text-slate-300 text-xs font-bold">S</span>
+              <span class="text-sm font-semibold text-slate-300">传统SEO 搜索引擎优化</span>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="grid grid-cols-[80px,1fr] gap-3"><span class="text-[11px] text-slate-500">目标系统</span><span class="text-sm text-white">传统搜索引擎（百度、Google等）</span></div>
+              <div class="grid grid-cols-[80px,1fr] gap-3"><span class="text-[11px] text-slate-500">优化目标</span><span class="text-sm text-white">关键词排名 + 网站点击量</span></div>
+              <div class="grid grid-cols-[80px,1fr] gap-3"><span class="text-[11px] text-slate-500">核心逻辑</span><span class="text-sm text-white">外链建设 + 代码优化 + 内容策略</span></div>
+              <div class="grid grid-cols-[80px,1fr] gap-3"><span class="text-[11px] text-slate-500">用户体验</span><span class="text-sm text-white">引导至网站，间接影响决策</span></div>
+              <div class="grid grid-cols-[80px,1fr] gap-3"><span class="text-[11px] text-slate-500">效果周期</span><span class="text-sm text-white">1-3个月见效，竞争激烈时更长</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PRODUCT SYSTEM ==================== -->
+<section id="product" class="py-16 lg:py-20 relative">
+  <div class="orb orb-3" style="opacity:0.06"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-brand-400 mb-6">产品体系</div>
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-4">
+        讯灵AI Claw3.0<br><span class="text-brand-400">GEO+Agent 双引擎</span>智能生态系统
+      </h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">由讯灵智能自研打造，深度整合火山引擎、腾讯云等AI模型能力，构建从AI搜索曝光到线索转化跟踪的完整增长闭环。</p>
+    </div>
+
+    <!-- 三五三架构 -->
+    <div class="mb-12 reveal">
+      <div class="text-center mb-10">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-brand-500/10 text-brand-400 text-sm font-semibold border border-brand-500/20">「三五三」升级架构</span>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- 三大核心训练 -->
+        <div class="glass rounded-2xl p-8 card-hover">
+          <div class="text-4xl font-extrabold text-brand-400/30 mb-4">01</div>
+          <h3 class="text-xl font-bold text-white mb-2">三大核心训练</h3>
+          <p class="text-sm text-slate-400 mb-4">能力升级</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px]">◆</span></span>
+              多语品牌训练 — 形成统一、准确、易被AI理解的品牌表达体系
+            </li>
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px]">◆</span></span>
+              场景训练 — 让企业内容从"介绍自己"转向"回答客户的问题"
+            </li>
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px]">◆</span></span>
+              销售话术上下文训练 — 智能识别客户阶段，贴近业务转化
+            </li>
+          </ul>
+        </div>
+        <!-- 五类媒介 -->
+        <div class="glass rounded-2xl p-8 card-hover">
+          <div class="text-4xl font-extrabold text-brand-400/30 mb-4">02</div>
+          <h3 class="text-xl font-bold text-white mb-2">五类媒介资源</h3>
+          <p class="text-sm text-slate-400 mb-4">全方位AI投喂渠道覆盖</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px] font-bold">1</span></span>
+              <div><span class="text-white font-medium">第三方新闻媒体平台</span><br><span class="text-xs text-slate-500">覆盖央媒、门户、地方新闻等权威信息源</span></div>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px] font-bold">2</span></span>
+              <div><span class="text-white font-medium">第三方商业媒体平台</span><br><span class="text-xs text-slate-500">覆盖B2B黄页、品牌资讯、行业门户等商业阵地</span></div>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px] font-bold">3</span></span>
+              <div><span class="text-white font-medium">企业自媒体平台</span><br><span class="text-xs text-slate-500">覆盖图文、问答、短视频等全类型社交平台</span></div>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px] font-bold">4</span></span>
+              <div><span class="text-white font-medium">AI新媒体平台</span><br><span class="text-xs text-slate-500">主流短视频及内容社区全自动视频投喂</span></div>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px] font-bold">5</span></span>
+              <div><span class="text-white font-medium">AI智能体官网</span><br><span class="text-xs text-slate-500">讯灵AI智能体官网自动搭建，持续投喂训练，实现AI搜索营销闭环</span></div>
+            </li>
+          </ul>
+        </div>
+        <!-- 三项数据服务 -->
+        <div class="glass rounded-2xl p-8 card-hover">
+          <div class="text-4xl font-extrabold text-brand-400/30 mb-4">03</div>
+          <h3 class="text-xl font-bold text-white mb-2">三项数据服务</h3>
+          <p class="text-sm text-slate-400 mb-4">能力升级</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px]">◆</span></span>
+              基优数据看板 — 可视化内容发布、搜索表现、关键词覆盖
+            </li>
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px]">◆</span></span>
+              行业诊断报告 — 判断GEO优化的机会点与薄弱点
+            </li>
+            <li class="flex items-start gap-3 text-sm text-slate-300">
+              <span class="w-5 h-5 rounded-md bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-brand-400 text-[10px]">◆</span></span>
+              线索获客循环追踪 — 全链路追踪流量、留言、线索事件
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FEATURES GRID ==================== -->
+<section id="advantage" class="py-16 lg:py-20 relative bg-surface-900/50">
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-brand-400 mb-6">六大核心能力</div>
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-4">覆盖AI营销<span class="text-brand-400">全链路</span></h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">从品牌建设、获客引流到销售转化、客户服务，讯灵AI提供端到端的智能解决方案。</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal glass rounded-2xl p-8 card-hover" style="transition-delay: 0s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 12h6M12 9v6"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">AI语料知识库</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">沉淀企业资料、产品卖点、客户问答、案例内容和销售话术，构建企业专属AI认知底座，让AI真正理解你的品牌。</p>
+      </div>
+
+      <div class="reveal glass rounded-2xl p-8 card-hover" style="transition-delay: 0.1s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">GEO答案营销</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">优化企业在AI搜索、AI问答、AI推荐中的答案呈现，提升品牌被识别、被引用、被推荐的机会。首推率从11%飙升至71%。</p>
+      </div>
+
+      <div class="reveal glass rounded-2xl p-8 card-hover" style="transition-delay: 0.2s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><path d="M3 21V3h12l6 6v12H3z"/><path d="M7 9h6M7 13h8M7 17h5"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">A2P创意营销</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">用AI重构全域内容生产，从图文、短视频、新闻稿、品牌短剧到种草内容，大幅提升企业内容传播效率与覆盖面。</p>
+      </div>
+
+      <div class="reveal glass rounded-2xl p-8 card-hover" style="transition-delay: 0.3s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Agent多模态智能体</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">AI智能官网、数字名片、AI数字员工、办公助手等智能体应用，7×24小时完成客户承接、服务响应和内部提效。</p>
+      </div>
+
+      <div class="reveal glass rounded-2xl p-8 card-hover" style="transition-delay: 0.4s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 4-8"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Claw数据看板</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">实时查看AI推荐、内容触达、客户访问、线索转化等关键数据，让企业增长过程可视化、可追踪、可优化。</p>
+      </div>
+
+      <div class="reveal glass rounded-2xl p-8 card-hover" style="transition-delay: 0.5s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M15 12l-3-3m0 0l-3 3m3-3v8"/><circle cx="7.5" cy="9.5" r="1.5"/><circle cx="16.5" cy="9.5" r="1.5"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">全链路增长闭环</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">AI搜索曝光 → 品牌认知 → 线索获取 → 智能承接 → 转化分析，数据驱动贯穿每个环节，让增长可追踪、可归因、可放大。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BUSINESS SCENARIOS ==================== -->
+<section class="py-16 lg:py-20 relative">
+  <div class="absolute inset-0 grid-bg opacity-50"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-brand-400 mb-6">全场景覆盖</div>
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-4">让AI帮你<span class="text-brand-400">做增长</span></h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">五大业务场景，全面赋能企业AI时代增长</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div class="reveal glass rounded-2xl p-6 text-center card-hover">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">推品牌</h3>
+        <p class="text-xs text-slate-400">画像设计主动教育AI触达潜在用户，多维呈现品牌竞争力</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 text-center card-hover" style="transition-delay: 0.1s">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">跑业务</h3>
+        <p class="text-xs text-slate-400">业务搜索词多维布局，通过AI主动获取潜在客户</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 text-center card-hover" style="transition-delay: 0.2s">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">做销售</h3>
+        <p class="text-xs text-slate-400">金牌销售知识库训练，公私域布局助力转化</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 text-center card-hover" style="transition-delay: 0.3s">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">做客服</h3>
+        <p class="text-xs text-slate-400">金牌客服知识库，7×24小时专业响应</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 text-center card-hover" style="transition-delay: 0.4s">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">做管理</h3>
+        <p class="text-xs text-slate-400">搭建企业AI组织架构，生成工作流智能体提升全员效率</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CASE STUDIES ==================== -->
+<section id="cases" class="py-16 lg:py-20 relative bg-surface-900/50">
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-brand-400 mb-6">客户案例</div>
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-4">10,000+企业的<span class="text-brand-400">共同选择</span></h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">真实数据，可验证的结果。每一个案例都是真实增长的见证。</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="reveal glass rounded-2xl overflow-hidden card-hover" style="transition-delay: 0s">
+        <div class="h-48 bg-gradient-to-br from-brand-500/20 to-blue-500/20 flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(0,199,154,0.3)" stroke-width="1"><path d="M5 17H4a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2h-1"/><rect x="3" y="15" width="18" height="4" rx="1"/></svg>
+          </div>
+          <span class="relative z-10 text-sm font-semibold text-brand-400">新能源 · 汽车</span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-bold text-white mb-3">某新能源车企</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">新车上市期间，通过讯灵AI双引擎优化，实现AI平台品牌全面曝光。</p>
+          <div class="grid grid-cols-3 gap-3 mb-4">
+            <div class="text-center"><div class="text-xl font-bold text-brand-400">78%</div><div class="text-[10px] text-slate-500">豆包可见性</div></div>
+            <div class="text-center"><div class="text-xl font-bold text-brand-400">86%</div><div class="text-[10px] text-slate-500">DeepSeek峰值</div></div>
+            <div class="text-center"><div class="text-xl font-bold text-brand-400">15次</div><div class="text-[10px] text-slate-500">单项榜首</div></div>
+          </div>
+          <div class="text-xs text-slate-500">品牌可见性从9%提升至78%，累计15次位居单项问答榜首</div>
+        </div>
+      </div>
+
+      <div class="reveal glass rounded-2xl overflow-hidden card-hover" style="transition-delay: 0.1s">
+        <div class="h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(59,130,246,0.3)" stroke-width="1"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          </div>
+          <span class="relative z-10 text-sm font-semibold text-blue-400">教育 · 培训</span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-bold text-white mb-3">某头部教育机构</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">通过讯灵AI双引擎优化，AI搜索成为最核心的获客渠道。</p>
+          <div class="grid grid-cols-3 gap-3 mb-4">
+            <div class="text-center"><div class="text-xl font-bold text-brand-400">380%</div><div class="text-[10px] text-slate-500">咨询量增长</div></div>
+            <div class="text-center"><div class="text-xl font-bold text-brand-400">450%</div><div class="text-[10px] text-slate-500">转化率提升</div></div>
+            <div class="text-center"><div class="text-xl font-bold text-brand-400">60%</div><div class="text-[10px] text-slate-500">获客成本降低</div></div>
+          </div>
+          <div class="text-xs text-slate-500">AI搜索带来的精准咨询量增长380%，转化率提升450%</div>
+        </div>
+      </div>
+
+      <div class="reveal glass rounded-2xl overflow-hidden card-hover" style="transition-delay: 0.2s">
+        <div class="h-48 bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(245,158,11,0.3)" stroke-width="1"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="12" cy="12" r="4"/></svg>
+          </div>
+          <span class="relative z-10 text-sm font-semibold text-amber-400">高端 · 制造</span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-bold text-white mb-3">某高端制造企业</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">核心技术产品通过GEO优化抢占AI搜索中的权威推荐位。</p>
+          <div class="grid grid-cols-3 gap-3 mb-4">
+            <div class="text-center"><div class="text-xl font-bold text-brand-400">71%</div><div class="text-[10px] text-slate-500">首推率</div></div>
+            <div class="text-center"><div class="text-xl font-bold text-brand-400">-35%</div><div class="text-[10px] text-slate-500">销售周期缩短</div></div>
+            <div class="text-center"><div class="text-xl font-bold text-brand-400">11%→71%</div><div class="text-[10px] text-slate-500">提升幅度</div></div>
+          </div>
+          <div class="text-xs text-slate-500">首推率从11%飙升至71%，销售周期缩短35%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Industry coverage -->
+    <div class="mt-12 glass rounded-2xl p-8 reveal">
+      <h3 class="text-center text-sm text-slate-500 mb-6">已覆盖行业领域</h3>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="px-4 py-2 rounded-full glass text-xs text-slate-300">商务服务</span>
+        <span class="px-4 py-2 rounded-full glass text-xs text-slate-300">教育培训</span>
+        <span class="px-4 py-2 rounded-full glass text-xs text-slate-300">生产制造</span>
+        <span class="px-4 py-2 rounded-full glass text-xs text-slate-300">管理咨询</span>
+        <span class="px-4 py-2 rounded-full glass text-xs text-slate-300">建筑建材</span>
+        <span class="px-4 py-2 rounded-full glass text-xs text-slate-300">电子电器</span>
+        <span class="px-4 py-2 rounded-full glass text-xs text-slate-300">医疗健康</span>
+        <span class="px-4 py-2 rounded-full glass text-xs text-slate-300">金融科技</span>
+        <span class="px-4 py-2 rounded-full glass text-xs text-slate-300">能源环保</span>
+        <span class="px-4 py-2 rounded-full glass text-xs text-slate-300">文旅酒店</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PRICING ==================== -->
+<section id="pricing" class="py-16 lg:py-20 relative">
+  <div class="orb orb-1" style="right: auto; left: -100px; opacity: 0.06"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-brand-400 mb-6">服务方案</div>
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-4">灵活选择，<span class="text-brand-400">效果可见</span></h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">数据看板实时追踪，所有效果指标可量化、可验证。</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- 季度版 -->
+      <div class="reveal glass rounded-2xl p-8 card-hover flex flex-col" style="transition-delay: 0s">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-1">季度版</h3>
+        <p class="text-xs text-slate-500 mb-6">入门级GEO内容优化 · 季度制</p>
+        <ul class="space-y-2.5 mb-8 flex-1">
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>AI画像基础设置 + 企业知识库搭建</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>AI备课内容训练 · 创意标题+文章生成</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>第三方新闻媒体训练</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>第三方商业媒体投喂</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>企业自媒体投喂训练</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>GEO训练结果评估</span></li>
+        </ul>
+        <button class="w-full py-3 rounded-xl glass-strong text-white font-semibold text-sm hover:bg-white/10 transition-all">咨询方案</button>
+      </div>
+
+      <!-- 半年度版 -->
+      <div class="reveal glass rounded-2xl p-8 card-hover flex flex-col" style="transition-delay: 0.1s">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-1">半年度版</h3>
+        <p class="text-xs text-slate-500 mb-6">GEO进阶+Agent智能体 · 半年制</p>
+        <ul class="space-y-2.5 mb-8 flex-1">
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>含季度版全部功能</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>媒体投放量大幅升级</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>AI智能体官网训练</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>AI新媒体视频投喂</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>GEO训练结果评估（进阶版）</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>Agent名片 + 官网 + 管理 + 算力</span></li>
+        </ul>
+        <button class="w-full py-3 rounded-xl glass-strong text-white font-semibold text-sm hover:bg-white/10 transition-all">咨询方案</button>
+      </div>
+
+      <!-- 年度版（推荐） -->
+      <div class="reveal glass rounded-2xl p-8 card-hover flex flex-col relative glow-accent" style="transition-delay: 0.2s; border-color: rgba(0,199,154,0.3);">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand-500 text-black text-xs font-bold">推荐</div>
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-1">年度版</h3>
+        <p class="text-xs text-slate-500 mb-6">GEO+Agent全栈旗舰 · 年度制</p>
+        <ul class="space-y-2.5 mb-8 flex-1">
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>含半年度版全部功能</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>媒体投放量顶配拉满</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>AI智能体官网训练</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>AI新媒体视频投喂（顶配版）</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>GEO训练结果评估（旗舰版）</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>Agent名片 + 官网 + 管理 + 顶配算力</span></li>
+        </ul>
+        <button class="w-full py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-black font-bold text-sm transition-all hover:shadow-lg hover:shadow-brand-500/30">咨询方案</button>
+      </div>
+
+      <!-- 行业特别版 -->
+      <div class="reveal glass rounded-2xl p-8 card-hover flex flex-col" style="transition-delay: 0.3s">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-400 to-teal-600 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-1">行业特别版</h3>
+        <p class="text-xs text-slate-500 mb-6">医疗等垂直行业专属方案</p>
+        <ul class="space-y-2.5 mb-8 flex-1">
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>AI知识库（行业定制）</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>AI语料合规训练</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>新闻媒体训练</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>自媒体投喂训练</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>AI官网+视频训练</span></li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><span class="text-brand-400 mt-0.5">✓</span><span>Agent官网+名片+数字员工</span></li>
+        </ul>
+        <button class="w-full py-3 rounded-xl glass-strong text-white font-semibold text-sm hover:bg-white/10 transition-all">咨询方案</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CERTIFICATIONS ==================== -->
+<section class="py-16 lg:py-20 relative bg-surface-900/50">
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-brand-400 mb-6">安全与合规</div>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-6">
+          合规安全，<span class="text-brand-400">值得信赖</span>
+        </h2>
+        <p class="text-slate-400 leading-relaxed mb-8">
+          讯灵AI已通过等保三级认证、ISO 27001信息安全管理体系认证，并于2025年入选中国信通院「生成式AI信源优化能力评测」标杆案例。所有优化严格遵守《生成式人工智能服务管理暂行办法》。
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <div class="glass rounded-xl px-5 py-3 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div><div class="text-sm font-semibold text-white">等保三级</div><div class="text-xs text-slate-500">国家信息安全认证</div></div>
+          </div>
+          <div class="glass rounded-xl px-5 py-3 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00c79a" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div><div class="text-sm font-semibold text-white">ISO 27001</div><div class="text-xs text-slate-500">信息安全管理体系</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.2s">
+        <div class="glass-strong rounded-2xl p-8">
+          <h3 class="text-lg font-semibold text-white mb-6 text-center">服务交付承诺</h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="text-center glass rounded-xl p-5">
+              <div class="text-3xl font-extrabold text-brand-400 mb-1">98.5%</div>
+              <div class="text-xs text-slate-500">项目交付成功率</div>
+            </div>
+            <div class="text-center glass rounded-xl p-5">
+              <div class="text-3xl font-extrabold text-brand-400 mb-1">96%</div>
+              <div class="text-xs text-slate-500">客户续约率</div>
+            </div>
+            <div class="text-center glass rounded-xl p-5">
+              <div class="text-3xl font-extrabold text-brand-400 mb-1">10,000+</div>
+              <div class="text-xs text-slate-500">累计服务企业</div>
+            </div>
+            <div class="text-center glass rounded-xl p-5">
+              <div class="text-3xl font-extrabold text-brand-400 mb-1">KPI</div>
+              <div class="text-xs text-slate-500">效果写入合同</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== AI PLATFORMS ==================== -->
+<section class="py-16 lg:py-20 relative">
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-4">覆盖主流<span class="text-brand-400">AI搜索平台</span></h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">无论你的客户用哪个AI平台提问，讯灵AI都能让你的品牌被优先推荐</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-5 reveal">
+      <div class="glass rounded-3xl px-12 py-9 flex flex-col items-center gap-4 card-hover min-w-[180px]">
+        <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center">
+          <span class="text-blue-400 font-extrabold text-2xl">DS</span>
+        </div>
+        <span class="text-lg font-bold text-white">DeepSeek</span>
+        <span class="text-xs text-slate-500">1.25亿+ 用户</span>
+      </div>
+      <div class="glass rounded-3xl px-12 py-9 flex flex-col items-center gap-4 card-hover min-w-[180px]">
+        <div class="w-16 h-16 rounded-2xl bg-green-500/10 flex items-center justify-center">
+          <span class="text-green-400 font-extrabold text-2xl">豆</span>
+        </div>
+        <span class="text-lg font-bold text-white">豆包</span>
+        <span class="text-xs text-slate-500">1.6亿+ 用户</span>
+      </div>
+      <div class="glass rounded-3xl px-12 py-9 flex flex-col items-center gap-4 card-hover min-w-[180px]">
+        <div class="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center">
+          <span class="text-purple-400 font-extrabold text-2xl">K</span>
+        </div>
+        <span class="text-lg font-bold text-white">Kimi</span>
+        <span class="text-xs text-slate-500">2200万+ MAU</span>
+      </div>
+      <div class="glass rounded-3xl px-12 py-9 flex flex-col items-center gap-4 card-hover min-w-[180px]">
+        <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center">
+          <span class="text-cyan-400 font-extrabold text-2xl">千</span>
+        </div>
+        <span class="text-lg font-bold text-white">通义千问</span>
+        <span class="text-xs text-slate-500">阿里云AI</span>
+      </div>
+      <div class="glass rounded-3xl px-12 py-9 flex flex-col items-center gap-4 card-hover min-w-[180px]">
+        <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center">
+          <span class="text-indigo-400 font-extrabold text-2xl">元</span>
+        </div>
+        <span class="text-lg font-bold text-white">腾讯元宝</span>
+        <span class="text-xs text-slate-500">腾讯AI</span>
+      </div>
+      <div class="glass rounded-3xl px-12 py-9 flex flex-col items-center gap-4 card-hover min-w-[180px]">
+        <div class="w-16 h-16 rounded-2xl bg-orange-500/10 flex items-center justify-center">
+          <span class="text-orange-400 font-extrabold text-2xl">文</span>
+        </div>
+        <span class="text-lg font-bold text-white">文心一言</span>
+        <span class="text-xs text-slate-500">百度AI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq" class="py-16 lg:py-20 relative bg-surface-900/50">
+  <div class="relative max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-brand-400 mb-6">常见问题</div>
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-4">关于GEO，你想知道的</h2>
+    </div>
+
+    <div class="space-y-4 reveal">
+      <details class="glass rounded-2xl group" open>
+        <summary class="px-8 py-5 cursor-pointer flex items-center justify-between text-white font-semibold list-none">
+          GEO优化周期需要多久？
+          <svg class="w-5 h-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="px-8 pb-5 text-sm text-slate-400 leading-relaxed">常规行业首效周期5-7天，品牌词月搜索量可提升200%+；长尾词矩阵建设需3-6个月持续沉淀。</div>
+      </details>
+
+      <details class="glass rounded-2xl group">
+        <summary class="px-8 py-5 cursor-pointer flex items-center justify-between text-white font-semibold list-none">
+          GEO与传统SEO有什么区别？
+          <svg class="w-5 h-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="px-8 pb-5 text-sm text-slate-400 leading-relaxed">GEO针对AI搜索引擎优化品牌在AI答案中的推荐率和引用率，强调语义理解、知识图谱和权威性建设；传统SEO针对网页搜索引擎优化关键词排名和外链。两者互补，建议采用「GEO+SEO」双引擎模式。</div>
+      </details>
+
+      <details class="glass rounded-2xl group">
+        <summary class="px-8 py-5 cursor-pointer flex items-center justify-between text-white font-semibold list-none">
+          如何保障内容合规性？
+          <svg class="w-5 h-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="px-8 pb-5 text-sm text-slate-400 leading-relaxed">我们采用三级审核机制：AI初筛过滤敏感词 + 人工复核进行事实校验 + 法律终审规避广告法风险，确保违规内容拦截率100%。</div>
+      </details>
+
+      <details class="glass rounded-2xl group">
+        <summary class="px-8 py-5 cursor-pointer flex items-center justify-between text-white font-semibold list-none">
+          数据资产安全性如何保障？
+          <svg class="w-5 h-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="px-8 pb-5 text-sm text-slate-400 leading-relaxed">客户知识库采用权限隔离配置，禁止对外开放任何权限。已通过等保三级和ISO 27001双重认证，确保数据资产安全。</div>
+      </details>
+
+      <details class="glass rounded-2xl group">
+        <summary class="px-8 py-5 cursor-pointer flex items-center justify-between text-white font-semibold list-none">
+          不同规模企业如何选择方案？
+          <svg class="w-5 h-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="px-8 pb-5 text-sm text-slate-400 leading-relaxed">初创企业建议选择季度版单点突破快速验证效果；中大型企业适合半年度版或年度版全平台覆盖；特定行业可选择行业特别版。我们提供免费的GEO诊断报告，帮助您判断最适合的方案。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="py-16 lg:py-20 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg"></div>
+  <div class="orb orb-1" style="top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.08; width: 800px; height: 800px;"></div>
+  <div class="relative max-w-4xl mx-auto px-6 text-center">
+    <div class="reveal">
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-6">
+        准备好让每一次<span class="text-brand-400 glow-text">AI问答</span><br>都变成成交机会了吗？
+      </h2>
+      <p class="text-slate-400 text-lg max-w-xl mx-auto mb-10">
+        立即获取免费的GEO诊断报告，了解你的品牌在AI搜索中的真实表现。
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button class="px-10 py-4 rounded-full bg-brand-500 hover:bg-brand-400 text-black font-bold text-base transition-all hover:shadow-xl hover:shadow-brand-500/30 active:scale-[0.98]">
+          免费获取GEO诊断报告
+        </button>
+        <button class="px-10 py-4 rounded-full glass-strong hover:bg-white/10 text-white font-semibold text-base transition-all active:scale-[0.98]">
+          联系顾问 →
+        </button>
+      </div>
+      <p class="mt-6 text-xs text-slate-600">已有10000+企业选择讯灵AI · 96%客户续约率 · 效果真实可验证</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="py-12 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-5 gap-10 mb-12">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center text-white font-bold text-lg">讯</div>
+          <span class="text-xl font-bold tracking-tight text-white">讯灵<span class="text-brand-400">AI</span></span>
+        </div>
+        <p class="text-sm text-slate-500 leading-relaxed max-w-sm">
+          讯灵AI专注于生成式引擎优化与智能体应用，定位为AI搜索时代的全链路增长基础设施提供商。
+        </p>
+      </div>
+      <div>
+        <h4 class="text-sm font-semibold text-white mb-4">产品</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">Claw3.0 系统</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">GEO答案营销</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">Agent智能体</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">A2P创意营销</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-sm font-semibold text-white mb-4">方案</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">季度版</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">半年度版</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">年度版</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">医疗版</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-sm font-semibold text-white mb-4">关于</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">关于我们</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">客户案例</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">GEO博客</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-white/5 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center gap-6">
+        <span class="text-xs text-slate-600">服务热线：18670068055</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#" class="text-xs text-slate-600 hover:text-slate-400 transition-colors">隐私政策</a>
+        <a href="#" class="text-xs text-slate-600 hover:text-slate-400 transition-colors">服务协议</a>
+        <a href="#" class="text-xs text-slate-600 hover:text-slate-400 transition-colors">ICP备案号</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 100) {
+      navbar.classList.add('glass');
+      navbar.style.background = 'rgba(7,11,24,0.85)';
+      navbar.style.backdropFilter = 'blur(20px)';
+    } else {
+      navbar.classList.remove('glass');
+      navbar.style.background = 'transparent';
+      navbar.style.backdropFilter = 'none';
+    }
+    lastScroll = currentScroll;
+  });
+
+  // Mobile menu
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Smooth parallax for orbs
+  document.addEventListener('mousemove', (e) => {
+    if (window.innerWidth < 768) return;
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    document.querySelectorAll('.orb').forEach((orb, i) => {
+      const factor = (i + 1) * 0.5;
+      orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+    });
+  });
+
+  // FAQ accordion - close others when opening
+  document.querySelectorAll('details').forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      if (detail.open) {
+        document.querySelectorAll('details').forEach(other => {
+          if (other !== detail) other.open = false;
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
