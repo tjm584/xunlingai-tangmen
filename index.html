@@ -1166,52 +1166,40 @@
     });
   });
 
-  // Form submit handler - POST to Tencent Survey via hidden iframe
+  // Form submit handler - POST to FormSubmit
   function handleFormSubmit(e) {
     e.preventDefault();
     var form = e.target;
+    var btn = form.querySelector('button[type=submit]');
+    var origText = btn.textContent;
+    btn.textContent = '提交中...';
+    btn.disabled = true;
+
     var formData = new FormData(form);
+    formData.append('_subject', '讯灵AI官网 · 新线索');
+    formData.append('_captcha', 'false');
 
-    // Try AJAX POST with no-cors (fire-and-forget to survey)
-    fetch('https://wj.qq.com/s2/27124486/jcwz/', {
+    fetch('https://formsubmit.co/ajax/252834867@qq.com', {
       method: 'POST',
-      mode: 'no-cors',
       body: formData
-    }).catch(function(){});
-
-    // Also try hidden iframe approach as fallback
-    var iframe = document.getElementById('submit-iframe');
-    if (!iframe) {
-      iframe = document.createElement('iframe');
-      iframe.id = 'submit-iframe';
-      iframe.name = 'submit-iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-    }
-
-    var hiddenForm = document.createElement('form');
-    hiddenForm.method = 'POST';
-    hiddenForm.action = 'https://wj.qq.com/s2/27124486/jcwz/';
-    hiddenForm.target = 'submit-iframe';
-    hiddenForm.style.display = 'none';
-
-    formData.forEach(function(value, key) {
-      var input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = key;
-      input.value = value;
-      hiddenForm.appendChild(input);
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.success) {
+        var success = document.getElementById('form-success');
+        success.classList.remove('hidden');
+        form.reset();
+        setTimeout(function() { success.classList.add('hidden'); }, 8000);
+      }
+    })
+    .catch(function() {
+      // Fallback: open Tencent Survey in new tab
+      window.open('https://wj.qq.com/s2/27124486/jcwz/', '_blank');
+    })
+    .finally(function() {
+      btn.textContent = origText;
+      btn.disabled = false;
     });
-
-    document.body.appendChild(hiddenForm);
-    hiddenForm.submit();
-    setTimeout(function() { document.body.removeChild(hiddenForm); }, 1000);
-
-    // Show success
-    var success = document.getElementById('form-success');
-    success.classList.remove('hidden');
-    form.reset();
-    setTimeout(function() { success.classList.add('hidden'); }, 6000);
   }
 </script>
 
