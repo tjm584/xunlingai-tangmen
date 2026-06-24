@@ -958,12 +958,20 @@
       <!-- 留资表单 -->
       <div class="reveal mt-10">
         <p class="text-slate-300 text-sm mb-6">留下联系方式，获取专属GEO增长方案</p>
-        <div class="max-w-md mx-auto">
-          <a href="https://wj.qq.com/s2/27124486/jcwz/" target="_blank" rel="noopener" class="block w-full px-8 py-4 rounded-full bg-brand-500 hover:bg-brand-400 text-black font-bold text-sm text-center transition-all hover:shadow-xl hover:shadow-brand-500/30 active:scale-[0.98]">
-            📋 填写留资表单，获取专属方案 →
-          </a>
-          <p class="text-slate-500 text-xs mt-3 text-center">点击后将打开腾讯问卷，数据安全加密传输</p>
-        </div>
+        <form id="lead-form" class="max-w-md mx-auto space-y-4" onsubmit="handleFormSubmit(event)">
+          <div class="grid grid-cols-2 gap-4">
+            <input type="text" name="company" placeholder="公司名称" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500/50 focus:bg-white/[0.07] transition-all">
+            <input type="text" name="product" placeholder="产品业务" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500/50 focus:bg-white/[0.07] transition-all">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <input type="text" name="contact_person" placeholder="联系人" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500/50 focus:bg-white/[0.07] transition-all">
+            <input type="text" name="contact_info" placeholder="联系方式（手机/微信）" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500/50 focus:bg-white/[0.07] transition-all">
+          </div>
+          <button type="submit" class="w-full px-8 py-3 rounded-full bg-brand-500 hover:bg-brand-400 text-black font-bold text-sm transition-all hover:shadow-xl hover:shadow-brand-500/30 active:scale-[0.98]">
+            提交信息 · 获取方案
+          </button>
+        </form>
+        <p id="form-success" class="hidden mt-4 text-brand-400 text-sm text-center">✅ 信息已提交，顾问将在1个工作日内与您联系！</p>
       </div>
       <p class="mt-6 text-xs text-slate-600">已有10000+企业选择讯灵AI · 96%客户续约率 · 效果真实可验证</p>
     </div>
@@ -1157,6 +1165,54 @@
       }, 2000);
     });
   });
+
+  // Form submit handler - POST to Tencent Survey via hidden iframe
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    var formData = new FormData(form);
+
+    // Try AJAX POST with no-cors (fire-and-forget to survey)
+    fetch('https://wj.qq.com/s2/27124486/jcwz/', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    }).catch(function(){});
+
+    // Also try hidden iframe approach as fallback
+    var iframe = document.getElementById('submit-iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = 'submit-iframe';
+      iframe.name = 'submit-iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    }
+
+    var hiddenForm = document.createElement('form');
+    hiddenForm.method = 'POST';
+    hiddenForm.action = 'https://wj.qq.com/s2/27124486/jcwz/';
+    hiddenForm.target = 'submit-iframe';
+    hiddenForm.style.display = 'none';
+
+    formData.forEach(function(value, key) {
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      hiddenForm.appendChild(input);
+    });
+
+    document.body.appendChild(hiddenForm);
+    hiddenForm.submit();
+    setTimeout(function() { document.body.removeChild(hiddenForm); }, 1000);
+
+    // Show success
+    var success = document.getElementById('form-success');
+    success.classList.remove('hidden');
+    form.reset();
+    setTimeout(function() { success.classList.add('hidden'); }, 6000);
+  }
 </script>
 
 </body>
