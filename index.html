@@ -105,6 +105,15 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
+
+  /* WeChat Modal */
+  #wechat-modal { transition: opacity 0.3s ease; opacity: 0; pointer-events: none; }
+  #wechat-modal.active { display: flex !important; opacity: 1; pointer-events: auto; }
+  #wechat-modal .wechat-modal-inner { transform: translateY(20px) scale(0.95); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+  #wechat-modal.active .wechat-modal-inner { transform: translateY(0) scale(1); }
+  #wechat-modal-close:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  #copy-wechat-btn:hover { background: rgba(255,255,255,0.06); color: #fff; border-color: rgba(255,255,255,0.2); }
+  #copy-wechat-btn.copied { background: rgba(0,199,154,0.1) !important; color: #00c79a !important; border-color: rgba(0,199,154,0.3) !important; }
 </style>
 </head>
 <body>
@@ -162,7 +171,7 @@
           讯灵AI Claw3.0 — 行业首创GEO+Agent双引擎智能生态系统，帮助企业抢占DeepSeek、豆包、文心一言等AI平台的答案入口，实现从曝光到转化的全链路增长。
         </p>
         <div class="flex flex-wrap gap-4">
-          <button class="px-8 py-4 rounded-full bg-brand-500 hover:bg-brand-400 text-black font-bold text-base transition-all hover:shadow-xl hover:shadow-brand-500/30 active:scale-[0.98]">
+          <button class="wechat-trigger px-8 py-4 rounded-full bg-brand-500 hover:bg-brand-400 text-black font-bold text-base transition-all hover:shadow-xl hover:shadow-brand-500/30 active:scale-[0.98]">
             免费获取GEO诊断报告
           </button>
           <button class="px-8 py-4 rounded-full glass-strong hover:bg-white/10 text-white font-semibold text-base transition-all active:scale-[0.98]">
@@ -942,7 +951,7 @@
         立即获取免费的GEO诊断报告，了解你的品牌在AI搜索中的真实表现。
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <button class="px-10 py-4 rounded-full bg-brand-500 hover:bg-brand-400 text-black font-bold text-base transition-all hover:shadow-xl hover:shadow-brand-500/30 active:scale-[0.98]">
+        <button class="wechat-trigger px-10 py-4 rounded-full bg-brand-500 hover:bg-brand-400 text-black font-bold text-base transition-all hover:shadow-xl hover:shadow-brand-500/30 active:scale-[0.98]">
           免费获取GEO诊断报告
         </button>
         <button class="px-10 py-4 rounded-full glass-strong hover:bg-white/10 text-white font-semibold text-base transition-all active:scale-[0.98]">
@@ -1073,6 +1082,76 @@
       }
     });
   });
+
+  // WeChat Modal
+  const wechatModal = document.getElementById('wechat-modal');
+  const wechatTriggers = document.querySelectorAll('.wechat-trigger');
+
+  wechatTriggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      wechatModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  document.getElementById('wechat-modal-close').addEventListener('click', () => {
+    wechatModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  wechatModal.addEventListener('click', (e) => {
+    if (e.target === wechatModal) {
+      wechatModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Copy WeChat ID
+  document.getElementById('copy-wechat-btn').addEventListener('click', () => {
+    navigator.clipboard.writeText('18670068055').then(() => {
+      const btn = document.getElementById('copy-wechat-btn');
+      const orig = btn.textContent;
+      btn.textContent = '已复制 ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  });
 </script>
+
+<!-- WeChat Modal -->
+<div id="wechat-modal" style="position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);">
+  <div class="wechat-modal-inner" style="position:relative;background:#0f172a;border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:48px 40px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.5);">
+    <button id="wechat-modal-close" style="position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#94a3b8;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;">×</button>
+    
+    <div style="width:72px;height:72px;border-radius:20px;background:rgba(0,199,154,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#00c79a"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.742 2.043 2.81 3.355 4.917 3.355.35 0 .698-.035 1.034-.102a.743.743 0 0 1 .61.083l1.626.948a.28.28 0 0 0 .142.047c.139 0 .248-.113.248-.25 0-.061-.022-.12-.04-.18l-.334-1.268a.504.504 0 0 1 .18-.565c1.562-1.148 2.477-2.85 2.477-4.723 0-2.088-1.147-3.935-2.865-5.014-.343.204-.642.414-.935.663zm-2.666 1.303a.99.99 0 0 1 .993 1.008.996.996 0 0 1-1.979 0 .99.99 0 0 1 .986-1.008zm3.962 0a.99.99 0 0 1 .993 1.008.996.996 0 0 1-1.979 0 .99.99 0 0 1 .986-1.008z"/></svg>
+    </div>
+    
+    <h3 style="font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;">微信在线咨询</h3>
+    <p style="font-size:14px;color:#94a3b8;margin-bottom:28px;">扫码或添加微信号，专属顾问为您服务</p>
+    
+    <!-- QR Code -->
+    <div style="width:200px;height:200px;margin:0 auto 24px;border-radius:16px;border:2px dashed rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);overflow:hidden;">
+      <div style="text-align:center;padding:16px;">
+        <div style="width:60px;height:60px;border-radius:14px;background:rgba(0,199,154,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#00c79a"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.742 2.043 2.81 3.355 4.917 3.355.35 0 .698-.035 1.034-.102a.743.743 0 0 1 .61.083l1.626.948a.28.28 0 0 0 .142.047c.139 0 .248-.113.248-.25 0-.061-.022-.12-.04-.18l-.334-1.268a.504.504 0 0 1 .18-.565c1.562-1.148 2.477-2.85 2.477-4.723 0-2.088-1.147-3.935-2.865-5.014-.343.204-.642.414-.935.663zm-2.666 1.303a.99.99 0 0 1 .993 1.008.996.996 0 0 1-1.979 0 .99.99 0 0 1 .986-1.008zm3.962 0a.99.99 0 0 1 .993 1.008.996.996 0 0 1-1.979 0 .99.99 0 0 1 .986-1.008z"/></svg>
+        </div>
+        <p style="font-size:13px;color:#64748b;">请替换为<br>企业微信二维码</p>
+      </div>
+    </div>
+    
+    <!-- WeChat ID -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:rgba(255,255,255,0.04);border-radius:12px;margin:0 auto;max-width:240px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#00c79a"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348z"/></svg>
+      <span style="font-size:15px;color:#e2e8f0;letter-spacing:0.05em;">18670068055</span>
+    </div>
+    <button id="copy-wechat-btn" style="margin-top:12px;padding:10px 32px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#94a3b8;font-size:14px;cursor:pointer;transition:all 0.2s;">复制微信号</button>
+  </div>
+</div>
+
 </body>
 </html>
